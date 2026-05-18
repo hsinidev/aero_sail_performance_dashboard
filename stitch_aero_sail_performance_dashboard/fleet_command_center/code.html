@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TACTICAL_COMMAND | Fleet Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .glass-panel {
+            background: rgba(16, 16, 16, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(156, 240, 255, 0.1);
+        }
+        .data-grid-line {
+            background-image: linear-gradient(rgba(156, 240, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(156, 240, 255, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #444748; border-radius: 10px; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#001f24",
+                        "on-background": "#e5e2e1",
+                        "on-primary-container": "#7b7979",
+                        "on-secondary-fixed-variant": "#004f58",
+                        "secondary-fixed-dim": "#00daf3",
+                        "on-error": "#690005",
+                        "inverse-surface": "#e5e2e1",
+                        "outline-variant": "#444748",
+                        "on-tertiary-fixed-variant": "#464747",
+                        "inverse-primary": "#5f5e5e",
+                        "surface-bright": "#393939",
+                        "primary-fixed-dim": "#c9c6c5",
+                        "surface-container": "#20201f",
+                        "secondary-fixed": "#9cf0ff",
+                        "tertiary-fixed": "#e3e2e2",
+                        "on-primary-fixed-variant": "#474646",
+                        "on-primary-fixed": "#1c1b1b",
+                        "surface-container-high": "#2a2a2a",
+                        "secondary": "#bdf4ff",
+                        "surface-container-highest": "#353535",
+                        "surface-dim": "#131313",
+                        "secondary-container": "#00e3fd",
+                        "on-primary": "#313030",
+                        "tertiary-fixed-dim": "#c6c6c6",
+                        "tertiary": "#c6c6c6",
+                        "background": "#131313",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-tertiary-container": "#79797a",
+                        "on-tertiary": "#2f3131",
+                        "on-surface-variant": "#c4c7c7",
+                        "error-container": "#93000a",
+                        "on-secondary": "#00363d",
+                        "surface-tint": "#c9c6c5",
+                        "outline": "#8e9192",
+                        "error": "#ffb4ab",
+                        "on-secondary-container": "#00616d",
+                        "inverse-on-surface": "#313030",
+                        "on-surface": "#e5e2e1",
+                        "surface-variant": "#353535",
+                        "surface-container-low": "#1c1b1b",
+                        "surface": "#131313",
+                        "primary-fixed": "#e5e2e1",
+                        "primary": "#c9c6c5",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "tertiary-container": "#090a0b",
+                        "primary-container": "#0a0a0a"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "label-caps": ["JetBrains Mono"],
+                        "headline-md": ["JetBrains Mono"],
+                        "body-sm": ["Inter"],
+                        "data-readout": ["JetBrains Mono"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-sm selection:bg-secondary-fixed-dim selection:text-on-secondary-fixed">
+<!-- TopAppBar -->
+<header class="fixed top-0 z-50 flex justify-between items-center w-full px-margin-desktop h-16 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/20">
+<div class="flex items-center gap-6">
+<span class="font-display-lg text-headline-md tracking-tighter text-on-background">TACTICAL_COMMAND</span>
+<nav class="hidden md:flex gap-6">
+<a class="text-secondary-fixed-dim font-bold font-label-caps text-label-caps" href="#">FLEET_CONTROL</a>
+<a class="text-on-surface-variant hover:bg-secondary/10 hover:text-secondary-fixed-dim transition-colors font-label-caps text-label-caps px-2 py-1" href="#">STRATEGY_DECK</a>
+<a class="text-on-surface-variant hover:bg-secondary/10 hover:text-secondary-fixed-dim transition-colors font-label-caps text-label-caps px-2 py-1" href="#">COMMS_ARRAY</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-secondary/10 transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-secondary/10 transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-secondary-fixed-dim rounded-full"></span>
+</button>
+<button class="flex items-center gap-2 pl-2 border-l border-outline-variant/20">
+<span class="material-symbols-outlined text-secondary-fixed-dim" data-icon="account_circle">account_circle</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">COMMANDER_01</span>
+</button>
+</div>
+</header>
+<div class="flex h-screen pt-16">
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col h-full py-margin-desktop space-y-gutter w-64 bg-surface-container-lowest/90 backdrop-blur-2xl border-r border-outline-variant/20">
+<div class="px-6 mb-8">
+<div class="p-3 glass-panel rounded-lg border-l-2 border-secondary-fixed-dim">
+<p class="font-display-lg text-headline-md text-on-background">VELOCITY_V1</p>
+<p class="font-label-caps text-label-caps text-secondary-fixed-dim mt-1">SOG: 14.2kn | TWS: 18.5kn</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim bg-secondary/5 border-l-2 border-secondary-fixed-dim scale-95 transition-transform duration-75" href="#">
+<span class="material-symbols-outlined" data-icon="directions_boat">directions_boat</span>
+<span class="font-label-caps text-label-caps">Fleet Status</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest/50 hover:text-on-surface transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="speed">speed</span>
+<span class="font-label-caps text-label-caps">Live Telemetry</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest/50 hover:text-on-surface transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+<span class="font-label-caps text-label-caps">Performance VPP</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest/50 hover:text-on-surface transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-label-caps text-label-caps">Logistics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest/50 hover:text-on-surface transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="build">build</span>
+<span class="font-label-caps text-label-caps">Maintenance</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest/50 hover:text-on-surface transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-label-caps text-label-caps">Crew Manifest</span>
+</a>
+</nav>
+<div class="px-4 py-6 border-t border-outline-variant/10">
+<button class="w-full py-3 mb-6 font-label-caps text-label-caps border border-secondary-fixed-dim text-secondary-fixed-dim hover:bg-secondary-fixed-dim hover:text-on-secondary-fixed transition-colors tracking-widest">
+                    INITIATE_RACE_MODE
+                </button>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface transition-all" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="memory">memory</span>
+<span class="font-label-caps text-label-caps">Diagnostics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface transition-all" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="help_outline">help_outline</span>
+<span class="font-label-caps text-label-caps">Help</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="flex-1 overflow-y-auto data-grid-line p-margin-desktop">
+<div class="max-w-container-max mx-auto space-y-gutter">
+<!-- Dashboard Header -->
+<div class="flex justify-between items-end border-b border-outline-variant/30 pb-4">
+<div>
+<h1 class="font-display-lg text-display-lg text-on-background">FLEET_OVERVIEW</h1>
+<p class="font-label-caps text-label-caps text-on-primary-container mt-2">SECTOR: NORTH_ATLANTIC_GRID_7 | SYSTEM_TIME: 14:22:04_Z</p>
+</div>
+<div class="flex gap-4">
+<div class="px-4 py-2 glass-panel border-l-2 border-secondary-fixed-dim">
+<p class="font-label-caps text-[9px] text-on-primary-container">ACTIVE_HULLS</p>
+<p class="font-data-readout text-headline-md text-secondary-fixed-dim">08</p>
+</div>
+<div class="px-4 py-2 glass-panel border-l-2 border-error">
+<p class="font-label-caps text-[9px] text-on-primary-container">ALERTS</p>
+<p class="font-data-readout text-headline-md text-error">03</p>
+</div>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Fleet Map Widget -->
+<div class="col-span-12 lg:col-span-8 h-[500px] glass-panel relative overflow-hidden group">
+<div class="absolute inset-0 z-0 bg-[#050505]">
+<img class="w-full h-full object-cover opacity-60 mix-blend-screen" data-alt="A highly detailed nautical tactical map display with digital overlays of wind vectors and vessel tracking lines. The style is a minimalist heads-up display with deep carbon blacks and electric blue highlights, featuring fine grid patterns and isobaric meteorological contours in a futuristic command center aesthetic." data-location="North Atlantic Ocean" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIQs6vAI8z1n20ULHRxv8hMCu7cXfA-Q5FuciRboWVC4Ydierz9bEU1HpeJXSsQvu7zlhdAjRfQ7G1Re4W7mqFlU8_s-Z8Ik4271gjUsr8FZ4-or2p4qE1DyigERDSxFVjccmqfvPOGWdhF3q_fU8msyuadH3fGIohJvja3NDhsmaDi_1vGsVDOaG0mTy51t6f4gPY27AW0NYJj2gx3i2uOqMhtbn0b-tXfkl4_cK3TB8FTh2Srgfb7wtQ7VcqOtNvhlI8ii0mPqzF"/>
+</div>
+<div class="absolute top-4 left-4 z-10 glass-panel p-3 border-l-3 border-secondary-fixed-dim">
+<p class="font-label-caps text-label-caps mb-1">LIVE_POSITIONING</p>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 bg-secondary-fixed-dim animate-pulse rounded-full"></span>
+<span class="font-data-readout text-body-sm text-secondary-fixed-dim">ENCRYPTED_FEED_01</span>
+</div>
+</div>
+<!-- Tactical Overlays -->
+<div class="absolute bottom-4 right-4 z-10 flex gap-2">
+<button class="w-10 h-10 glass-panel flex items-center justify-center hover:bg-secondary/10 text-on-background">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+<button class="w-10 h-10 glass-panel flex items-center justify-center hover:bg-secondary/10 text-on-background">
+<span class="material-symbols-outlined" data-icon="remove">remove</span>
+</button>
+<button class="w-10 h-10 glass-panel flex items-center justify-center hover:bg-secondary/10 text-on-background">
+<span class="material-symbols-outlined" data-icon="layers">layers</span>
+</button>
+</div>
+</div>
+<!-- System Alerts -->
+<div class="col-span-12 lg:col-span-4 glass-panel flex flex-col">
+<div class="p-4 border-b border-outline-variant/20 flex justify-between items-center bg-surface-container-highest/20">
+<p class="font-label-caps text-label-caps">PRIORITY_ALERTS</p>
+<span class="text-[10px] font-label-caps bg-error-container text-on-error-container px-2 py-0.5 rounded">CRITICAL_3</span>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-4">
+<div class="border-l-3 border-error pl-4 py-1">
+<p class="font-label-caps text-[10px] text-error">HULL_STRESS_WARNING</p>
+<p class="text-on-background font-body-sm mt-1">Yacht VELOCITY_V1: Structural stress exceeding 85% on port foil assembly.</p>
+<p class="text-[9px] font-label-caps text-on-primary-container mt-2">T-MINUS: 00:04:12</p>
+</div>
+<div class="border-l-3 border-secondary-fixed-dim pl-4 py-1">
+<p class="font-label-caps text-[10px] text-secondary-fixed-dim">WIND_SHIFT_DETECTION</p>
+<p class="text-on-background font-body-sm mt-1">Grid Sector 7: TWS increase detected (+4.2kn). Suggest header tack in 300m.</p>
+<p class="text-[9px] font-label-caps text-on-primary-container mt-2">T-MINUS: 00:12:45</p>
+</div>
+<div class="border-l-3 border-error pl-4 py-1">
+<p class="font-label-caps text-[10px] text-error">BATTERY_CRITICAL</p>
+<p class="text-on-background font-body-sm mt-1">Yacht GHOST_RIDER: Navigation bank at 12% capacity. Solar intake insufficient.</p>
+<p class="text-[9px] font-label-caps text-on-primary-container mt-2">T-MINUS: 00:02:22</p>
+</div>
+</div>
+<div class="p-4 bg-surface-container-highest/10">
+<button class="w-full py-2 glass-panel font-label-caps text-label-caps text-on-surface-variant hover:text-on-background transition-all">ACKNOWLEDGE_ALL</button>
+</div>
+</div>
+<!-- Dense Status Table -->
+<div class="col-span-12 glass-panel overflow-hidden">
+<div class="p-4 border-b border-outline-variant/20 flex justify-between items-center bg-surface-container-highest/20">
+<p class="font-label-caps text-label-caps">FLEET_TELEMETRY_LOG</p>
+<div class="flex gap-4">
+<span class="font-label-caps text-[10px] text-secondary-fixed-dim flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed-dim"></span> SYNC_ACTIVE
+                                </span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-label-caps">
+<thead>
+<tr class="text-[10px] text-on-primary-container border-b border-outline-variant/10 uppercase tracking-tighter bg-surface-container-lowest">
+<th class="px-6 py-3 font-medium">Vessel_ID</th>
+<th class="px-6 py-3 font-medium">SOG_(kn)</th>
+<th class="px-6 py-3 font-medium">TWS_(kn)</th>
+<th class="px-6 py-3 font-medium">Heading</th>
+<th class="px-6 py-3 font-medium">Batt_%</th>
+<th class="px-6 py-3 font-medium">Hull_Stress</th>
+<th class="px-6 py-3 font-medium text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="text-on-background font-body-sm divide-y divide-outline-variant/10">
+<tr class="hover:bg-secondary/5 transition-colors group">
+<td class="px-6 py-4 font-display-lg text-secondary-fixed-dim">VELOCITY_V1</td>
+<td class="px-6 py-4 font-data-readout text-body-lg">14.2</td>
+<td class="px-6 py-4 font-data-readout text-body-lg">18.5</td>
+<td class="px-6 py-4 font-data-readout text-body-lg">284°</td>
+<td class="px-6 py-4">
+<div class="w-24 h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="w-[88%] h-full bg-secondary-fixed-dim"></div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-error font-data-readout text-body-sm">86% ▲</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-on-primary-container hover:text-secondary-fixed-dim material-symbols-outlined text-base" data-icon="terminal">terminal</button>
+</td>
+</tr>
+<tr class="hover:bg-secondary/5 transition-colors group">
+<td class="px-6 py-4 font-display-lg">STEALTH_F9</td>
+<td class="px-6 py-4 font-data-readout text-body-lg">16.8</td>
+<td class="px-6 py-4 font-data-readout text-body-lg">19.1</td>
+<td class="px-6 py-4 font-data-readout text-body-lg">280°</td>
+<td class="px-6 py-4">
+<div class="w-24 h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="w-[94%] h-full bg-secondary-fixed-dim"></div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-on-primary-container font-data-readout text-body-sm">42%</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-on-primary-container hover:text-secondary-fixed-dim material-symbols-outlined text-base" data-icon="terminal">terminal</button>
+</td>
+</tr>
+<tr class="hover:bg-secondary/5 transition-colors group bg-error/5">
+<td class="px-6 py-4 font-display-lg text-error">GHOST_RIDER</td>
+<td class="px-6 py-4 font-data-readout text-body-lg">09.4</td>
+<td class="px-6 py-4 font-data-readout text-body-lg">17.2</td>
+<td class="px-6 py-4 font-data-readout text-body-lg">310°</td>
+<td class="px-6 py-4">
+<div class="w-24 h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="w-[12%] h-full bg-error animate-pulse"></div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-on-primary-container font-data-readout text-body-sm">18%</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-on-primary-container hover:text-secondary-fixed-dim material-symbols-outlined text-base" data-icon="terminal">terminal</button>
+</td>
+</tr>
+<tr class="hover:bg-secondary/5 transition-colors group">
+<td class="px-6 py-4 font-display-lg">CARBON_04</td>
+<td class="px-6 py-4 font-data-readout text-body-lg">13.7</td>
+<td class="px-6 py-4 font-data-readout text-body-lg">18.0</td>
+<td class="px-6 py-4 font-data-readout text-body-lg">285°</td>
+<td class="px-6 py-4">
+<div class="w-24 h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="w-[72%] h-full bg-secondary-fixed-dim"></div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-on-primary-container font-data-readout text-body-sm">31%</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-on-primary-container hover:text-secondary-fixed-dim material-symbols-outlined text-base" data-icon="terminal">terminal</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- AI Suggestion Overlay (Tactical Engine) -->
+<div class="col-span-12 glass-panel border-l-4 border-secondary-fixed-dim p-6 relative overflow-hidden">
+<div class="absolute -right-12 -bottom-12 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-[160px]" data-icon="smart_toy">smart_toy</span>
+</div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-secondary-fixed-dim" data-icon="psychology">psychology</span>
+<h3 class="font-label-caps text-label-caps text-secondary-fixed-dim tracking-widest">TACTICAL_ENGINE_RECOMMENDATION</h3>
+</div>
+<p class="font-body-lg text-on-background max-w-3xl leading-relaxed">
+                            Weather model GFS-12 indicates a tightening pressure gradient in the next 45 minutes. Fleet redirection to heading 290° will optimize VMG by 4.2%. Recommend staggered sail adjustments for <span class="text-secondary-fixed-dim">VELOCITY_V1</span> to mitigate recorded hull stress spikes.
+                        </p>
+<div class="mt-6 flex gap-4">
+<button class="px-6 py-2 bg-secondary-fixed-dim text-on-secondary-fixed font-label-caps text-label-caps hover:brightness-110 transition-all">EXECUTE_VECTOR_ADJUSTMENT</button>
+<button class="px-6 py-2 border border-outline-variant text-on-surface-variant font-label-caps text-label-caps hover:bg-surface-container-highest transition-all">DISMISS_ADVISORY</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 h-16 glass-panel border-t border-outline-variant/20 flex justify-around items-center z-50">
+<button class="flex flex-col items-center gap-1 text-secondary-fixed-dim">
+<span class="material-symbols-outlined" data-icon="directions_boat">directions_boat</span>
+<span class="text-[9px] font-label-caps">FLEET</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span class="text-[9px] font-label-caps">MAP</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="warning">warning</span>
+<span class="text-[9px] font-label-caps">ALERTS</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[9px] font-label-caps">PRO</span>
+</button>
+</nav>
+</body></html>

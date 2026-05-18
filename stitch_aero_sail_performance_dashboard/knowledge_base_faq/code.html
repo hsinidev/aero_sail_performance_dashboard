@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #0A0A0A;
+            background-image: 
+                radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+        .glass-panel {
+            background: rgba(229, 226, 225, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(229, 226, 225, 0.2);
+        }
+        .carbon-texture {
+            background: linear-gradient(45deg, #131313 25%, #1a1a1a 25%, #1a1a1a 50%, #131313 50%, #131313 75%, #1a1a1a 75%, #1a1a1a 100%);
+            background-size: 4px 4px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#001f24",
+                        "on-background": "#e5e2e1",
+                        "on-primary-container": "#7b7979",
+                        "on-secondary-fixed-variant": "#004f58",
+                        "secondary-fixed-dim": "#00daf3",
+                        "on-error": "#690005",
+                        "inverse-surface": "#e5e2e1",
+                        "outline-variant": "#444748",
+                        "on-tertiary-fixed-variant": "#464747",
+                        "inverse-primary": "#5f5e5e",
+                        "surface-bright": "#393939",
+                        "primary-fixed-dim": "#c9c6c5",
+                        "surface-container": "#20201f",
+                        "secondary-fixed": "#9cf0ff",
+                        "tertiary-fixed": "#e3e2e2",
+                        "on-primary-fixed-variant": "#474646",
+                        "on-primary-fixed": "#1c1b1b",
+                        "surface-container-high": "#2a2a2a",
+                        "secondary": "#bdf4ff",
+                        "surface-container-highest": "#353535",
+                        "surface-dim": "#131313",
+                        "secondary-container": "#00e3fd",
+                        "on-primary": "#313030",
+                        "tertiary-fixed-dim": "#c6c6c6",
+                        "tertiary": "#c6c6c6",
+                        "background": "#131313",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-tertiary-container": "#79797a",
+                        "on-tertiary": "#2f3131",
+                        "on-surface-variant": "#c4c7c7",
+                        "error-container": "#93000a",
+                        "on-secondary": "#00363d",
+                        "surface-tint": "#c9c6c5",
+                        "outline": "#8e9192",
+                        "error": "#ffb4ab",
+                        "on-secondary-container": "#00616d",
+                        "inverse-on-surface": "#313030",
+                        "on-surface": "#e5e2e1",
+                        "surface-variant": "#353535",
+                        "surface-container-low": "#1c1b1b",
+                        "surface": "#131313",
+                        "primary-fixed": "#e5e2e1",
+                        "primary": "#c9c6c5",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "tertiary-container": "#090a0b",
+                        "primary-container": "#0a0a0a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "32px",
+                        "margin-mobile": "16px",
+                        "container-max": "1440px",
+                        "gutter": "16px",
+                        "unit": "4px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "label-caps": ["JetBrains Mono"],
+                        "headline-md": ["JetBrains Mono"],
+                        "body-sm": ["Inter"],
+                        "data-readout": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "label-caps": ["11px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "data-readout": ["32px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface selection:bg-secondary-fixed-dim selection:text-on-secondary-fixed">
+<header class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/20 flex justify-between items-center w-full px-margin-desktop h-16">
+<div class="flex items-center gap-4">
+<span class="font-display-lg text-headline-md tracking-tighter text-on-background">TACTICAL_COMMAND</span>
+<div class="hidden md:flex gap-6 ml-8">
+<a class="text-on-surface-variant hover:bg-secondary/10 hover:text-secondary-fixed-dim transition-colors font-label-caps text-label-caps p-2" href="#">NAV_DASHBOARD</a>
+<a class="text-secondary-fixed-dim font-bold font-label-caps text-label-caps p-2 border-b-2 border-secondary-fixed-dim" href="#">NAV_KNOWLEDGE_BASE</a>
+<a class="text-on-surface-variant hover:bg-secondary/10 hover:text-secondary-fixed-dim transition-colors font-label-caps text-label-caps p-2" href="#">NAV_LIVE_FEED</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-secondary/10 text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<button class="p-2 hover:bg-secondary/10 text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-sm" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</header>
+<div class="flex min-h-screen pt-16">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 h-screen w-64 bg-surface-container-lowest/90 backdrop-blur-2xl border-r border-outline-variant/20 flex flex-col py-margin-desktop space-y-gutter hidden lg:flex">
+<div class="px-6 mb-8">
+<h2 class="font-label-caps text-label-caps text-secondary-fixed-dim mb-1">VELOCITY_V1</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant opacity-60">SOG: 14.2kn | TWS: 18.5kn</p>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest/50 hover:text-on-surface transition-all" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="directions_boat">directions_boat</span>
+<span class="font-label-caps text-label-caps">Fleet Status</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest/50 hover:text-on-surface transition-all" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="speed">speed</span>
+<span class="font-label-caps text-label-caps">Live Telemetry</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim bg-secondary/5 border-l-2 border-secondary-fixed-dim" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="insights">insights</span>
+<span class="font-label-caps text-label-caps">Knowledge Hub</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest/50 hover:text-on-surface transition-all" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="inventory_2">inventory_2</span>
+<span class="font-label-caps text-label-caps">Logistics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest/50 hover:text-on-surface transition-all" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="build">build</span>
+<span class="font-label-caps text-label-caps">Maintenance</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest/50 hover:text-on-surface transition-all" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="groups">groups</span>
+<span class="font-label-caps text-label-caps">Crew Manifest</span>
+</a>
+</nav>
+<div class="px-4 py-6 border-t border-outline-variant/20">
+<button class="w-full py-3 bg-transparent border border-secondary-fixed-dim text-secondary-fixed-dim font-label-caps text-label-caps tracking-widest hover:bg-secondary-fixed-dim/10 transition-all">
+                    INITIATE_RACE_MODE
+                </button>
+</div>
+<div class="px-4 pb-8 space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface font-label-caps text-[10px]" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="memory">memory</span>
+                    Diagnostics
+                </a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface font-label-caps text-[10px]" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="help_outline">help_outline</span>
+                    Help Center
+                </a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 lg:ml-64 p-margin-mobile md:p-margin-desktop bg-background max-w-screen-2xl">
+<!-- Header Section -->
+<section class="mb-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="max-w-2xl">
+<span class="font-label-caps text-label-caps text-secondary-fixed-dim bg-secondary-fixed-dim/10 px-3 py-1 inline-block mb-4">TACTICAL_INTEL_SYSTEM_V4</span>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-4">Tactical Knowledge Base</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant/80">Access centralized maneuvers, rigging specifications, and weather-routing protocols for the elite offshore racing circuit.</p>
+</div>
+<div class="w-full md:w-80">
+<div class="relative">
+<input class="w-full bg-surface-container border-b-2 border-outline focus:border-secondary-fixed-dim focus:ring-0 text-on-surface font-label-caps py-3 pl-10" placeholder="SEARCH_INTEL_DB..." type="text"/>
+<span class="material-symbols-outlined absolute left-2 top-3 text-outline" data-icon="search">search</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid: Knowledge Categories -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-12">
+<!-- Hero Article -->
+<article class="md:col-span-8 group relative glass-panel overflow-hidden border border-secondary-fixed-dim/30 hover:border-secondary-fixed-dim/60 transition-all cursor-pointer min-h-[400px]">
+<img alt="High speed racing yacht" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700" data-alt="A high-performance carbon fiber racing yacht cutting through dark, choppy ocean waters at sunset. The lighting is cinematic and moody, with deep metallic blacks and sharp electric blue highlights reflecting off the spray. The visual style is professional, sharp, and technologically focused, emphasizing speed and precision in a cold, elite offshore environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvxlsqWkrjUns3edgqwUH2Tv3NR7woOwC2-1Db3qOSkkddEAFGHzstS_g7VZdLPVLa-yDgDPKqgv0XkZThHbmIaM9B7jVq6878FB4RuCrPYbWZ8k8GVMPR_gJQ3iSZpTjEyKPYuyl5Z3a1hn62-HltX5PagkkzutrrlyLrDBcCYRDbwtnPFWV8rdh37Ix5gNSakmGfeBjYyqS_V-rYEDbIROnbRd9SqD5PMzfVw0cKJ7TlMtj4EUq6XukePZr9ZGOZmS-4KTXI472k"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
+<div class="relative h-full flex flex-col justify-end p-8">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-secondary-fixed-dim" data-icon="bolt">bolt</span>
+<span class="font-label-caps text-label-caps text-secondary-fixed-dim">URGENT_MANEUVER</span>
+</div>
+<h2 class="font-display-lg text-headline-md text-on-surface mb-4">Optimizing Jibe-Angles in TWS &gt; 25kn</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-xl mb-6">A technical analysis of rudder pressure and hull friction when executing high-wind jibes on the foiling hull platform.</p>
+<div class="flex items-center gap-6">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border border-background bg-surface-container"></div>
+<div class="w-8 h-8 rounded-full border border-background bg-surface-container"></div>
+</div>
+<span class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest">Collaborative Entry: Tactical Team</span>
+</div>
+</div>
+</article>
+<!-- Technical Specs Card -->
+<div class="md:col-span-4 glass-panel carbon-texture p-8 flex flex-col justify-between border-l-4 border-l-secondary-fixed-dim">
+<div>
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-6 block">RIGGING_GUIDES</span>
+<div class="space-y-6">
+<div class="group cursor-pointer">
+<h3 class="font-headline-md text-body-lg text-on-surface group-hover:text-secondary-fixed-dim transition-colors">Mast Rotation Limits</h3>
+<div class="w-full h-px bg-outline-variant/30 my-2"></div>
+<p class="font-body-sm text-[12px] text-on-surface-variant/60">Tension protocols for North Sails 3Di structure.</p>
+</div>
+<div class="group cursor-pointer">
+<h3 class="font-headline-md text-body-lg text-on-surface group-hover:text-secondary-fixed-dim transition-colors">Foil Pitch Calibration</h3>
+<div class="w-full h-px bg-outline-variant/30 my-2"></div>
+<p class="font-body-sm text-[12px] text-on-surface-variant/60">Hydraulic offsets for V-Foil deployment.</p>
+</div>
+<div class="group cursor-pointer">
+<h3 class="font-headline-md text-body-lg text-on-surface group-hover:text-secondary-fixed-dim transition-colors">Code Zero tensioning</h3>
+<div class="w-full h-px bg-outline-variant/30 my-2"></div>
+<p class="font-body-sm text-[12px] text-on-surface-variant/60">Load cell 3.4 monitoring requirements.</p>
+</div>
+</div>
+</div>
+<button class="mt-8 flex items-center justify-between text-secondary-fixed-dim group">
+<span class="font-label-caps text-label-caps">VIEW_ALL_SCHEMATICS</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Weather Routing Module -->
+<div class="md:col-span-4 glass-panel p-6 border border-outline-variant/20">
+<div class="flex items-center justify-between mb-6">
+<span class="font-label-caps text-label-caps text-on-surface-variant">WEATHER_PROTOCOLS</span>
+<span class="material-symbols-outlined text-secondary-fixed-dim" data-icon="cloud">cloud</span>
+</div>
+<div class="bg-surface-container-lowest p-4 mb-4">
+<div class="font-data-readout text-headline-md text-secondary-fixed-dim mb-1">1024 hPa</div>
+<div class="font-label-caps text-[10px] text-on-surface-variant">CURRENT_ISO_STABILITY</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant/80 mb-4">
+                        High-pressure system approaching from 240°. Strategy: Stay South of the rhumb line to catch the early lift.
+                    </p>
+<a class="font-label-caps text-label-caps text-secondary-fixed hover:underline" href="#">ACCESS_GRIB_FILES_v2</a>
+</div>
+<!-- Tactics List -->
+<div class="md:col-span-8 glass-panel overflow-hidden">
+<div class="grid grid-cols-1 md:grid-cols-2 h-full">
+<div class="p-8 border-r border-outline-variant/20">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-6 block">TACTICAL_ARCHIVE</span>
+<ul class="space-y-4">
+<li class="flex items-start gap-4">
+<span class="font-data-readout text-body-lg text-secondary-fixed-dim">01</span>
+<div>
+<div class="font-label-caps text-[12px] text-on-surface">Pre-start Box Positioning</div>
+<div class="font-body-sm text-[11px] text-on-surface-variant">Vulnerability to low-speed stalling.</div>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="font-data-readout text-body-lg text-secondary-fixed-dim">02</span>
+<div>
+<div class="font-label-caps text-[12px] text-on-surface">Shadowing Technique</div>
+<div class="font-body-sm text-[11px] text-on-surface-variant">Wind-blanketing at windward marks.</div>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="font-data-readout text-body-lg text-secondary-fixed-dim">03</span>
+<div>
+<div class="font-label-caps text-[12px] text-on-surface">Heavy Weather Reefing</div>
+<div class="font-body-sm text-[11px] text-on-surface-variant">Timed sequence for carbon mast safety.</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="relative bg-surface-container-high/50 p-8 flex flex-col justify-center">
+<div class="absolute top-0 right-0 p-4">
+<span class="material-symbols-outlined text-outline/20 text-6xl" data-icon="book_5">book_5</span>
+</div>
+<h4 class="font-headline-md text-on-surface mb-2">Crew Manual 2024</h4>
+<p class="font-body-sm text-on-surface-variant mb-6">Complete updated technical documentation for the V-Series hull and rig integration.</p>
+<button class="bg-secondary-fixed-dim text-on-secondary-fixed font-label-caps text-label-caps py-3 px-6 hover:bg-secondary-fixed transition-colors">DOWNLOAD_PDF_14MB</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Detailed Content & Collaboration Section -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-gutter items-start">
+<!-- Article Content -->
+<div class="lg:col-span-2 space-y-gutter">
+<div class="glass-panel p-8 md:p-12 border-t-2 border-t-secondary-fixed-dim">
+<div class="mb-8 pb-8 border-b border-outline-variant/20">
+<h2 class="font-display-lg text-headline-md text-on-surface mb-6">Technical Protocol: Foil-Assisted Upwind Transitions</h2>
+<div class="font-body-lg text-on-surface-variant space-y-4 leading-relaxed">
+<p>To maximize velocity made good (VMG) during upwind legs, the foil rake must be dynamically adjusted relative to the apparent wind angle (AWA). For optimal lift-to-drag ratios, we recommend a 2.5-degree positive pitch when TWS is between 14-18 knots.</p>
+<p>When transitioning through a tack, the 'Flight Controller' must initiate hydraulic release 2.4 seconds prior to the helm movement to prevent structural loading on the main bearing plates.</p>
+<div class="bg-secondary-container/5 p-6 border-l-4 border-secondary-fixed-dim my-8 font-label-caps text-[12px] text-secondary-fixed-dim">
+                                    CAUTION: EXCEEDING 4.0 DEGREES OF RAKE IN SEAS EXCEEDING 1.5M MAY RESULT IN CAVITATION AND SUBSEQUENT LOSS OF CONTROL.
+                                </div>
+<p>Documentation of the last hull inspection (Log 4402) confirms that the foil-well seals have been reinforced for these specific loads.</p>
+</div>
+</div>
+<!-- Collaboration / Comments -->
+<div class="space-y-8">
+<div class="flex items-center gap-4 mb-6">
+<h3 class="font-headline-md text-on-surface">Crew Collaboration</h3>
+<span class="bg-surface-container px-2 py-1 font-label-caps text-[10px] text-on-surface-variant">3_ACTIVE_THREADS</span>
+</div>
+<div class="space-y-6">
+<!-- Comment 1 -->
+<div class="flex gap-4 p-4 bg-surface-container-low border border-outline-variant/20">
+<div class="flex-shrink-0 w-10 h-10 bg-secondary/10 flex items-center justify-center text-secondary-fixed-dim">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-caps text-[11px] text-secondary-fixed-dim">Tactical_Navigator_01</span>
+<span class="font-label-caps text-[9px] text-on-surface-variant opacity-50">14:22 UTC</span>
+</div>
+<p class="font-body-sm text-on-surface-variant">Confirmed on last leg. The 2.5-degree pitch provided an extra 0.4 knots SOG without sacrificing leeway. Suggesting we update the default presets.</p>
+<div class="mt-3 flex gap-4">
+<button class="font-label-caps text-[10px] text-secondary-fixed hover:text-white transition-colors">REPLY</button>
+<button class="font-label-caps text-[10px] text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-xs" data-icon="thumb_up">thumb_up</span> 12</button>
+</div>
+</div>
+</div>
+<!-- Comment 2 -->
+<div class="flex gap-4 p-4 bg-surface-container-low border border-outline-variant/20 ml-8 md:ml-12">
+<div class="flex-shrink-0 w-10 h-10 bg-surface-variant flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="build">build</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-caps text-[11px] text-on-surface">Chief_Engineer_Y2</span>
+<span class="font-label-caps text-[9px] text-on-surface-variant opacity-50">15:05 UTC</span>
+</div>
+<p class="font-body-sm text-on-surface-variant">@Navigator_01, check the hydraulic pressure logs. We saw a spike near the bearing during the last 2.5-degree test. Let's keep it to 2.3 for the offshore leg.</p>
+</div>
+</div>
+</div>
+<!-- Comment Input -->
+<div class="mt-8 pt-8 border-t border-outline-variant/20">
+<div class="relative">
+<textarea class="w-full bg-surface-container border border-outline-variant/30 focus:border-secondary-fixed-dim focus:ring-0 text-on-surface font-body-sm p-4 h-32" placeholder="INPUT_DATA_OR_COMMENT..."></textarea>
+<div class="absolute bottom-4 right-4 flex gap-2">
+<button class="font-label-caps text-label-caps text-on-surface-variant px-4 py-2 hover:bg-surface-variant transition-colors">CANCEL</button>
+<button class="font-label-caps text-label-caps bg-secondary-fixed-dim text-on-secondary-fixed px-6 py-2 hover:bg-secondary-fixed transition-colors">SUBMIT_LOG</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Metadata & Related -->
+<div class="space-y-gutter">
+<!-- Article Metadata -->
+<div class="glass-panel p-6 border border-outline-variant/20">
+<h4 class="font-label-caps text-label-caps text-on-surface mb-4">INTEL_METADATA</h4>
+<div class="space-y-4 font-label-caps text-[10px]">
+<div class="flex justify-between border-b border-outline-variant/10 pb-2">
+<span class="text-on-surface-variant">VERSION</span>
+<span class="text-secondary-fixed-dim">V2.4.08</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant/10 pb-2">
+<span class="text-on-surface-variant">LAST_EDIT</span>
+<span class="text-on-surface">02_OCT_24</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant/10 pb-2">
+<span class="text-on-surface-variant">SECURITY</span>
+<span class="text-error">RESTRICTED_CREW_ONLY</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">AUTHOR</span>
+<span class="text-on-surface underline">CMDR_V_SYKES</span>
+</div>
+</div>
+</div>
+<!-- Related Topics -->
+<div class="glass-panel p-6 border border-outline-variant/20">
+<h4 class="font-label-caps text-label-caps text-on-surface mb-6">LINKED_PROTOCOLS</h4>
+<div class="space-y-4">
+<a class="block group" href="#">
+<div class="font-label-caps text-[12px] text-secondary-fixed group-hover:underline">Foil Scuff Maintenance</div>
+<p class="font-body-sm text-[11px] text-on-surface-variant mt-1">Polishing protocols for high-speed drag reduction.</p>
+</a>
+<a class="block group" href="#">
+<div class="font-label-caps text-[12px] text-secondary-fixed group-hover:underline">Apparent Wind Logic</div>
+<p class="font-body-sm text-[11px] text-on-surface-variant mt-1">Instrument calibration for mast-top sensors.</p>
+</a>
+<a class="block group" href="#">
+<div class="font-label-caps text-[12px] text-secondary-fixed group-hover:underline">Emergency Jettison</div>
+<p class="font-body-sm text-[11px] text-on-surface-variant mt-1">Explosive bolt sequence for carbon rig failure.</p>
+</a>
+</div>
+</div>
+<!-- HUD Status Summary -->
+<div class="glass-panel p-6 border-l-2 border-l-secondary-fixed-dim carbon-texture">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-secondary-fixed-dim text-sm" data-icon="sensors">sensors</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">SYSTEM_READINESS</span>
+</div>
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-[9px] text-on-surface-variant">DB_SYNC</span>
+<span class="w-16 h-1 bg-secondary-fixed-dim"></span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-[9px] text-on-surface-variant">LATENCY</span>
+<span class="text-secondary-fixed-dim font-data-readout text-[12px]">14ms</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Mobile Nav Bar (Visible only on mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-xl flex justify-around items-center h-16 px-4">
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-[9px] font-label-caps">DASH</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-secondary-fixed-dim" href="#">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+<span class="text-[9px] font-label-caps">INTEL</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="directions_boat">directions_boat</span>
+<span class="text-[9px] font-label-caps">FLEET</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-[9px] font-label-caps">SYSTEM</span>
+</a>
+</nav>
+</body></html>

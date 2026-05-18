@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(25, 25, 25, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .arc-container {
+            position: relative;
+            width: 120px;
+            height: 60px;
+            overflow: hidden;
+        }
+        .arc-bg {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-bottom-color: transparent;
+            border-left-color: transparent;
+            transform: rotate(-45deg);
+        }
+        .arc-fill {
+            position: absolute;
+            top: 0;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid #00daf3;
+            border-bottom-color: transparent;
+            border-left-color: transparent;
+            transform: rotate(45deg);
+            filter: drop-shadow(0 0 4px rgba(0, 229, 255, 0.4));
+        }
+        body {
+            background-color: #0A0A0A;
+            color: #e5e2e1;
+            overflow-x: hidden;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-highest": "#353535",
+                      "secondary-fixed-dim": "#00daf3",
+                      "inverse-on-surface": "#313030",
+                      "on-primary-fixed": "#1c1b1b",
+                      "on-tertiary-fixed": "#1a1c1c",
+                      "error-container": "#93000a",
+                      "inverse-surface": "#e5e2e1",
+                      "tertiary": "#c6c6c6",
+                      "surface-container-low": "#1c1b1b",
+                      "on-error-container": "#ffdad6",
+                      "on-secondary-fixed": "#001f24",
+                      "on-background": "#e5e2e1",
+                      "on-tertiary-container": "#79797a",
+                      "tertiary-fixed": "#e3e2e2",
+                      "on-surface": "#e5e2e1",
+                      "secondary-fixed": "#9cf0ff",
+                      "primary-fixed-dim": "#c9c6c5",
+                      "on-primary-fixed-variant": "#474646",
+                      "primary": "#c9c6c5",
+                      "on-secondary": "#00363d",
+                      "on-surface-variant": "#c4c7c7",
+                      "outline-variant": "#444748",
+                      "on-primary-container": "#7b7979",
+                      "outline": "#8e9192",
+                      "error": "#ffb4ab",
+                      "primary-fixed": "#e5e2e1",
+                      "secondary": "#bdf4ff",
+                      "surface-container-high": "#2a2a2a",
+                      "on-primary": "#313030",
+                      "on-tertiary": "#2f3131",
+                      "surface-container": "#20201f",
+                      "surface": "#131313",
+                      "on-secondary-fixed-variant": "#004f58",
+                      "surface-tint": "#c9c6c5",
+                      "surface-bright": "#393939",
+                      "surface-variant": "#353535",
+                      "primary-container": "#0a0a0a",
+                      "secondary-container": "#00e3fd",
+                      "tertiary-fixed-dim": "#c6c6c6",
+                      "on-tertiary-fixed-variant": "#464747",
+                      "on-secondary-container": "#00616d",
+                      "on-error": "#690005",
+                      "inverse-primary": "#5f5e5e",
+                      "surface-dim": "#131313",
+                      "tertiary-container": "#090a0b",
+                      "background": "#131313",
+                      "surface-container-lowest": "#0e0e0e"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "16px",
+                      "container-max": "1440px",
+                      "unit": "4px",
+                      "margin-mobile": "16px",
+                      "margin-desktop": "32px"
+              },
+              "fontFamily": {
+                      "body-sm": ["Inter"],
+                      "headline-md": ["JetBrains Mono"],
+                      "data-readout": ["JetBrains Mono"],
+                      "body-lg": ["Inter"],
+                      "display-lg": ["JetBrains Mono"],
+                      "label-caps": ["JetBrains Mono"]
+              },
+              "fontSize": {
+                      "body-sm": ["14px", {"lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                      "data-readout": ["32px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "body-lg": ["16px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}],
+                      "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-caps": ["11px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-lg">
+<!-- TopAppBar -->
+<header class="bg-surface/80 backdrop-blur-xl flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop h-20 fixed top-0 z-50 border-b border-outline-variant/20">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary-fixed-dim" data-icon="signal_cellular_alt">signal_cellular_alt</span>
+<h1 class="font-display-lg text-secondary-fixed-dim uppercase tracking-widest text-[20px] md:text-display-lg">AERO-SAIL | ORION-7</h1>
+</div>
+<div class="text-secondary-fixed-dim font-headline-md text-headline-md tracking-tighter">
+            24.8 KTS SOG
+        </div>
+</header>
+<main class="pt-24 pb-32 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<!-- AI Suggestion Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Hero AI SUGGESTION Card -->
+<section class="md:col-span-8 glass-panel rounded-xl p-6 relative overflow-hidden border-l-[3px] border-secondary-fixed-dim">
+<div class="flex flex-col h-full justify-between gap-6">
+<div>
+<span class="font-label-caps text-label-caps text-secondary-fixed-dim uppercase mb-2 block">AI SUGGESTION</span>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-4">INCREASE MAINSAIL DEPTH</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-md">Tactical engine predicts +0.4kts VMG gain by easing outhaul 15% and increasing halyard tension. Optimal for current 14kt TWS at 42° TWA.</p>
+</div>
+<div class="flex flex-wrap gap-4 items-end">
+<button class="bg-secondary-fixed-dim/10 border border-secondary-fixed-dim text-secondary-fixed-dim px-6 py-3 rounded font-label-caps text-label-caps hover:bg-secondary-fixed-dim/20 transition-all flex items-center gap-2 group">
+                            APPLY AI TRIM
+                            <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform" data-icon="bolt">bolt</span>
+</button>
+<div class="flex flex-col">
+<span class="font-label-caps text-[10px] text-on-surface-variant/60 uppercase">CONFIDENCE</span>
+<span class="font-data-readout text-data-readout text-secondary-fixed-dim">94%</span>
+</div>
+</div>
+</div>
+<!-- Vector-line Graphic of Sail -->
+<div class="absolute right-[-20px] top-[-20px] w-64 h-64 opacity-20 pointer-events-none">
+<svg fill="none" stroke="#00daf3" stroke-width="0.5" viewbox="0 0 100 100">
+<path d="M20,90 L80,90 L50,10 Z"></path>
+<path d="M25,85 Q55,60 50,20" stroke-dasharray="2,2"></path>
+<path d="M35,85 Q65,60 50,30" stroke-dasharray="2,2"></path>
+<circle cx="50" cy="50" r="40" stroke-opacity="0.1"></circle>
+<line stroke-opacity="0.3" x1="20" x2="50" y1="90" y2="10"></line>
+</svg>
+</div>
+</section>
+<!-- Trim Metrics Cluster -->
+<aside class="md:col-span-4 grid grid-cols-2 md:grid-cols-1 gap-gutter">
+<div class="glass-panel rounded-xl p-4 flex flex-col justify-between aspect-square md:aspect-auto md:h-32">
+<span class="font-label-caps text-label-caps text-on-surface-variant">TWA (TRUE WIND ANGLE)</span>
+<div class="flex items-baseline gap-2">
+<span class="font-data-readout text-data-readout">42.5</span>
+<span class="font-label-caps text-on-surface-variant">DEG</span>
+</div>
+</div>
+<div class="glass-panel rounded-xl p-4 flex flex-col justify-between aspect-square md:aspect-auto md:h-32">
+<span class="font-label-caps text-label-caps text-on-surface-variant">TWS (TRUE WIND SPEED)</span>
+<div class="flex items-baseline gap-2">
+<span class="font-data-readout text-data-readout text-secondary-fixed-dim">13.8</span>
+<span class="font-label-caps text-on-surface-variant">KTS</span>
+</div>
+</div>
+</aside>
+<!-- Progress Arcs Section -->
+<section class="md:col-span-12 glass-panel rounded-xl p-6">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-8 items-center">
+<div class="flex flex-col items-center text-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-4 uppercase">Target vs Current Trim</span>
+<div class="relative w-48 h-24 flex justify-center">
+<div class="arc-container scale-150 origin-bottom">
+<div class="arc-bg"></div>
+<div class="arc-fill" style="transform: rotate(110deg);"></div>
+</div>
+<div class="absolute bottom-0 text-center">
+<span class="font-data-readout text-[24px] block">0.82</span>
+<span class="font-label-caps text-[10px] text-on-surface-variant">COEFF</span>
+</div>
+</div>
+<div class="mt-4 flex gap-4">
+<div class="flex items-center gap-1">
+<div class="w-2 h-2 rounded-full bg-secondary-fixed-dim"></div>
+<span class="font-label-caps text-[10px]">CURRENT</span>
+</div>
+<div class="flex items-center gap-1">
+<div class="w-2 h-2 rounded-full bg-white/20"></div>
+<span class="font-label-caps text-[10px]">TARGET</span>
+</div>
+</div>
+</div>
+<div class="space-y-6">
+<!-- Main Halyard Control -->
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<span class="font-label-caps text-label-caps text-on-surface">MAIN HALYARD</span>
+<span class="font-headline-md text-headline-md text-secondary-fixed-dim">74%</span>
+</div>
+<div class="h-8 bg-white/5 border border-white/10 rounded overflow-hidden relative">
+<div class="h-full bg-secondary-fixed-dim/20 border-r-2 border-secondary-fixed-dim w-[74%]"></div>
+<div class="absolute inset-0 flex items-center px-4 pointer-events-none">
+<div class="w-full border-b border-dashed border-white/10"></div>
+</div>
+</div>
+<div class="flex justify-between">
+<button class="p-2 hover:bg-white/10 transition-colors rounded"><span class="material-symbols-outlined" data-icon="remove">remove</span></button>
+<button class="p-2 hover:bg-white/10 transition-colors rounded"><span class="material-symbols-outlined" data-icon="add">add</span></button>
+</div>
+</div>
+<!-- Outhaul Control -->
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<span class="font-label-caps text-label-caps text-on-surface">OUTHAUL</span>
+<span class="font-headline-md text-headline-md text-secondary-fixed-dim">45%</span>
+</div>
+<div class="h-8 bg-white/5 border border-white/10 rounded overflow-hidden relative">
+<div class="h-full bg-secondary-fixed-dim/20 border-r-2 border-secondary-fixed-dim w-[45%]"></div>
+<div class="absolute inset-0 flex items-center px-4 pointer-events-none">
+<div class="w-full border-b border-dashed border-white/10"></div>
+</div>
+</div>
+<div class="flex justify-between">
+<button class="p-2 hover:bg-white/10 transition-colors rounded"><span class="material-symbols-outlined" data-icon="remove">remove</span></button>
+<button class="p-2 hover:bg-white/10 transition-colors rounded"><span class="material-symbols-outlined" data-icon="add">add</span></button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Navigation Drawer (Performance Dock - Desktop Side) -->
+<div class="hidden lg:block fixed left-0 top-20 h-[calc(100vh-5rem)] w-80 bg-surface-container-low/95 backdrop-blur-2xl border-r border-outline-variant/20 z-40 p-6">
+<span class="font-label-caps text-secondary-fixed-dim block mb-8">PERFORMANCE DOCK</span>
+<nav class="space-y-2">
+<a class="flex items-center gap-4 p-4 text-secondary-fixed-dim border-l-4 border-secondary-fixed-dim bg-secondary-fixed-dim/5 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="flash_on">flash_on</span>
+<span class="font-headline-md text-[16px]">INSTANT TACKING</span>
+</a>
+<a class="flex items-center gap-4 p-4 text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="settings_input_component">settings_input_component</span>
+<span class="font-headline-md text-[16px]">LOAD CONFIG</span>
+</a>
+<a class="flex items-center gap-4 p-4 text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="settings_remote">settings_remote</span>
+<span class="font-headline-md text-[16px]">SYSTEM STATUS</span>
+</a>
+</nav>
+<div class="absolute bottom-6 left-6 right-6">
+<div class="glass-panel rounded p-4 border-secondary-fixed-dim/30">
+<span class="font-label-caps text-[10px] text-secondary-fixed-dim block mb-1">DATA SOURCE</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">IMU-7 SENSOR ARRAY : ACTIVE</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Primary Shell) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-t border-outline-variant/20 flex justify-around items-center px-4 h-24 pb-safe md:hidden">
+<a class="flex flex-col items-center justify-center text-secondary-fixed-dim bg-secondary-fixed-dim/10 rounded-lg py-2 px-4 shadow-[0_0_8px_rgba(0,229,255,0.2)] transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="tune">tune</span>
+<span class="font-label-caps text-label-caps uppercase mt-1">TRIM</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 py-2 px-4 hover:text-secondary-fixed-dim transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="sensors">sensors</span>
+<span class="font-label-caps text-label-caps uppercase mt-1">SENSORS</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 py-2 px-4 hover:text-secondary-fixed-dim transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-label-caps text-label-caps uppercase mt-1">ROUTE</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 py-2 px-4 hover:text-secondary-fixed-dim transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-caps text-label-caps uppercase mt-1">VMG</span>
+</a>
+</nav>
+</body></html>

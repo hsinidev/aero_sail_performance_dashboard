@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed": "#001f24",
+                    "on-background": "#e5e2e1",
+                    "on-primary-container": "#7b7979",
+                    "on-secondary-fixed-variant": "#004f58",
+                    "secondary-fixed-dim": "#00daf3",
+                    "on-error": "#690005",
+                    "inverse-surface": "#e5e2e1",
+                    "outline-variant": "#444748",
+                    "on-tertiary-fixed-variant": "#464747",
+                    "inverse-primary": "#5f5e5e",
+                    "surface-bright": "#393939",
+                    "primary-fixed-dim": "#c9c6c5",
+                    "surface-container": "#20201f",
+                    "secondary-fixed": "#9cf0ff",
+                    "tertiary-fixed": "#e3e2e2",
+                    "on-primary-fixed-variant": "#474646",
+                    "on-primary-fixed": "#1c1b1b",
+                    "surface-container-high": "#2a2a2a",
+                    "secondary": "#bdf4ff",
+                    "surface-container-highest": "#353535",
+                    "surface-dim": "#131313",
+                    "secondary-container": "#00e3fd",
+                    "on-primary": "#313030",
+                    "tertiary-fixed-dim": "#c6c6c6",
+                    "tertiary": "#c6c6c6",
+                    "background": "#131313",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-tertiary-container": "#79797a",
+                    "on-tertiary": "#2f3131",
+                    "on-surface-variant": "#c4c7c7",
+                    "error-container": "#93000a",
+                    "on-secondary": "#00363d",
+                    "surface-tint": "#c9c6c5",
+                    "outline": "#8e9192",
+                    "error": "#ffb4ab",
+                    "on-secondary-container": "#00616d",
+                    "inverse-on-surface": "#313030",
+                    "on-surface": "#e5e2e1",
+                    "surface-variant": "#353535",
+                    "surface-container-low": "#1c1b1b",
+                    "surface": "#131313",
+                    "primary-fixed": "#e5e2e1",
+                    "primary": "#c9c6c5",
+                    "on-error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "tertiary-container": "#090a0b",
+                    "primary-container": "#0a0a0a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "32px",
+                    "margin-mobile": "16px",
+                    "container-max": "1440px",
+                    "gutter": "16px",
+                    "unit": "4px"
+            },
+            "fontFamily": {
+                    "display-lg": ["JetBrains Mono"],
+                    "body-lg": ["Inter"],
+                    "label-caps": ["JetBrains Mono"],
+                    "headline-md": ["JetBrains Mono"],
+                    "body-sm": ["Inter"],
+                    "data-readout": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "label-caps": ["11px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "data-readout": ["32px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(163, 163, 163, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(229, 226, 225, 0.2);
+        }
+        .biometric-scanline {
+            height: 2px;
+            background: #00daf3;
+            box-shadow: 0 0 15px #00daf3;
+            animation: scan 3s ease-in-out infinite;
+            position: absolute;
+            width: 100%;
+            z-index: 20;
+        }
+        @keyframes scan {
+            0%, 100% { top: 0%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+        .isobar-pattern {
+            background-image: radial-gradient(circle at 2px 2px, rgba(229, 226, 225, 0.05) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-lg overflow-hidden h-screen w-screen isobar-pattern">
+<!-- Top Navigation Anchor -->
+<header class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center w-full px-margin-desktop h-16 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/20">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-fixed-dim" style="font-variation-settings: 'FILL' 1;">sailing</span>
+<span class="font-display-lg text-headline-md tracking-tighter text-on-background">TACTICAL_COMMAND</span>
+</div>
+<div class="flex items-center gap-gutter">
+<div class="hidden md:flex gap-6 items-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant cursor-pointer hover:text-secondary-fixed-dim transition-colors">FLEET_SYNC</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant cursor-pointer hover:text-secondary-fixed-dim transition-colors">ENCRYPTION_V2</span>
+</div>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-secondary/10 text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+</div>
+</div>
+</header>
+<main class="relative flex items-center justify-center h-full w-full pt-16">
+<!-- Background Visual Element -->
+<div class="absolute inset-0 opacity-20 pointer-events-none overflow-hidden">
+<img alt="High-performance yacht interior" class="w-full h-full object-cover grayscale" data-alt="A high-tech yacht cockpit at night, featuring glowing neon displays, carbon fiber surfaces, and complex navigation instrumentation. The lighting is dominated by deep blues and metallic silvers, creating a cold, professional tactical environment. The perspective is from the pilot seat looking out into a dark, misty ocean, maintaining a sense of futuristic mission-critical atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBG6GtvjeIuHOZRVuEXMi1Stz_mfaWWwHks5UkujtBv8fJsHxn9TyEdxFrfPKsKwTWdAjny499jANpbfdwCk4aqk2894hfwuC1cvTd4f_8L8PfEqV_hn76MD0Yv8d8c1ZLAEvzw-A42HmHxpU610I-TIT4lcw3_VqWOSN-Y3z45QWu1_H2JYUaa849ZEOKEoVKwuMCLZKmOEfOQNfVPuIsXifVlIOkFRRPPPOWHKr7A2ijxEie0Aubh9271gdukUbJTfF8AaYELtDeo"/>
+</div>
+<!-- Auth Core Container -->
+<div class="relative z-10 w-full max-w-4xl px-margin-mobile flex flex-col md:flex-row gap-gutter">
+<!-- Left: Visual/Biometric Section -->
+<div class="glass-panel flex-1 p-8 rounded-lg flex flex-col justify-between border-l-2 border-secondary-fixed-dim">
+<div class="space-y-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 bg-secondary-fixed-dim rounded-full"></span>
+<span class="font-label-caps text-label-caps text-secondary-fixed-dim">BIOMETRIC_STATUS: AWAITING_INPUT</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-background">AERO-SAIL AUTH</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-xs">Secure tactical uplink for elite offshore racing operations. Verify identity to access Vessel Telemetry and Fleet Management.</p>
+</div>
+<div class="relative w-full aspect-square max-w-[240px] mx-auto group">
+<div class="absolute inset-0 border border-secondary-fixed-dim/30 rounded-lg overflow-hidden bg-black/40">
+<div class="biometric-scanline"></div>
+<div class="absolute inset-0 flex items-center justify-center opacity-40">
+<span class="material-symbols-outlined text-[120px] text-secondary-fixed-dim" style="font-variation-settings: 'wght' 100;">fingerprint</span>
+</div>
+</div>
+<!-- Vector Accents -->
+<div class="absolute -top-2 -left-2 w-4 h-4 border-t-2 border-l-2 border-secondary-fixed-dim"></div>
+<div class="absolute -top-2 -right-2 w-4 h-4 border-t-2 border-r-2 border-secondary-fixed-dim"></div>
+<div class="absolute -bottom-2 -left-2 w-4 h-4 border-b-2 border-l-2 border-secondary-fixed-dim"></div>
+<div class="absolute -bottom-2 -right-2 w-4 h-4 border-b-2 border-r-2 border-secondary-fixed-dim"></div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<span class="block font-label-caps text-label-caps text-on-surface-variant mb-1">LAT_COORD</span>
+<span class="block font-data-readout text-[14px] text-on-background">46.4522° N</span>
+</div>
+<div>
+<span class="block font-label-caps text-label-caps text-on-surface-variant mb-1">LON_COORD</span>
+<span class="block font-data-readout text-[14px] text-on-background">17.8211° W</span>
+</div>
+</div>
+</div>
+<!-- Right: Form Section -->
+<div class="glass-panel flex-[1.2] p-8 rounded-lg flex flex-col gap-8">
+<div class="flex gap-4 border-b border-outline-variant/20 pb-4">
+<button class="font-label-caps text-label-caps text-secondary-fixed-dim border-b-2 border-secondary-fixed-dim pb-2 px-2 transition-all">SIGN_IN</button>
+<button class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-background pb-2 px-2 transition-all">CREATE_PROFILE</button>
+</div>
+<form class="flex flex-col gap-6">
+<div class="space-y-1 group">
+<label class="font-label-caps text-label-caps text-on-surface-variant group-focus-within:text-secondary-fixed-dim transition-colors">CREW_ID_IDENTIFIER</label>
+<div class="flex items-center gap-3 border-b border-outline-variant/40 focus-within:border-secondary-fixed-dim py-2 transition-colors">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">person</span>
+<input class="bg-transparent border-none outline-none focus:ring-0 w-full font-display-lg text-body-lg text-on-background placeholder:text-surface-variant p-0 uppercase" placeholder="CRW-992-ALPHA" type="text"/>
+</div>
+</div>
+<div class="space-y-1 group">
+<label class="font-label-caps text-label-caps text-on-surface-variant group-focus-within:text-secondary-fixed-dim transition-colors">VESSEL_REGISTRY_NAME</label>
+<div class="flex items-center gap-3 border-b border-outline-variant/40 focus-within:border-secondary-fixed-dim py-2 transition-colors">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">directions_boat</span>
+<input class="bg-transparent border-none outline-none focus:ring-0 w-full font-display-lg text-body-lg text-on-background placeholder:text-surface-variant p-0 uppercase" placeholder="VELOCITY_V1" type="text"/>
+</div>
+</div>
+<div class="space-y-1 group">
+<label class="font-label-caps text-label-caps text-on-surface-variant group-focus-within:text-secondary-fixed-dim transition-colors">ENCRYPTION_KEY_PASSWORD</label>
+<div class="flex items-center gap-3 border-b border-outline-variant/40 focus-within:border-secondary-fixed-dim py-2 transition-colors">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">key</span>
+<input class="bg-transparent border-none outline-none focus:ring-0 w-full font-display-lg text-body-lg text-on-background placeholder:text-surface-variant p-0" placeholder="••••••••••••" type="password"/>
+</div>
+</div>
+<div class="flex items-center justify-between mt-4">
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="w-4 h-4 bg-surface border-outline-variant text-secondary-fixed-dim focus:ring-0 focus:ring-offset-0 rounded-none" type="checkbox"/>
+<span class="font-label-caps text-label-caps text-on-surface-variant">PERSIST_SESSION</span>
+</label>
+<a class="font-label-caps text-label-caps text-secondary-fixed-dim/70 hover:text-secondary-fixed-dim transition-colors underline decoration-secondary-fixed-dim/20" href="#">RECOVER_KEY</a>
+</div>
+<button class="mt-4 w-full py-4 bg-secondary-fixed-dim/10 border border-secondary-fixed-dim hover:bg-secondary-fixed-dim hover:text-on-secondary-fixed transition-all duration-300 group flex items-center justify-center gap-2">
+<span class="font-label-caps text-label-caps font-bold">INITIATE_UPLINK</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</form>
+<div class="mt-auto border-t border-outline-variant/20 pt-6">
+<div class="flex items-center gap-3 p-3 bg-secondary-fixed-dim/5 border-l-2 border-secondary-fixed-dim">
+<span class="material-symbols-outlined text-secondary-fixed-dim">info</span>
+<p class="font-body-sm text-[12px] text-on-surface-variant leading-tight">
+                            AI_LOG: Session will be encrypted with RSA-4096. Any unauthorized access attempts will trigger local node lockout.
+                        </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Ambient Data Decoration -->
+<div class="absolute bottom-8 left-margin-desktop hidden lg:block opacity-30">
+<div class="font-label-caps text-label-caps text-secondary-fixed-dim mb-2">SYSTEM_LOGS</div>
+<div class="font-display-lg text-[10px] space-y-1 text-on-surface-variant">
+<div>[04:21:09] INCOMING_SIGNAL_STRENGTH: 98%</div>
+<div>[04:21:10] HANDSHAKE_PROTOCOL_INITIATED</div>
+<div>[04:21:11] ENCRYPTION_LAYER_ARMED</div>
+</div>
+</div>
+<div class="absolute bottom-8 right-margin-desktop hidden lg:block opacity-30 text-right">
+<div class="font-label-caps text-label-caps text-secondary-fixed-dim mb-2">GLOBAL_RACE_CLOCK</div>
+<div class="font-data-readout text-display-lg text-on-background">12:04:59<span class="text-secondary-fixed-dim text-headline-md">:04</span></div>
+</div>
+</main>
+<!-- Footer Overlay -->
+<footer class="fixed bottom-0 left-0 right-0 h-10 px-margin-desktop flex items-center justify-between text-[10px] font-label-caps text-on-primary-container z-50">
+<div>© 2024 AERO-SAIL_TACTICAL_SUITE</div>
+<div class="flex gap-4">
+<span>VESSEL_STATE: DOCKED</span>
+<span class="text-secondary-fixed-dim">SECURE_CHANNEL: ACTIVE</span>
+</div>
+</footer>
+</body></html>
